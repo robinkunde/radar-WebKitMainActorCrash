@@ -24,6 +24,9 @@ class ViewController: UIViewController {
         }
     }
 
+    // Removing `nonisolated` causes `performTest` to inherit @MainActor.
+    // Somehow, this fixes the crash, indicating some issue with how the Swift handles the @MainActor
+    // annotation on WKHTTPCookieStore.
     nonisolated
     static func performTest() async {
         for x in 1...100 {
